@@ -27,6 +27,8 @@ jobs:
         uses: actions/configure-pages@v5
         with:
           enablement: true
+      - name: Build curriculum index from syllabus
+        run: python3 scripts/build_curriculum.py
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
