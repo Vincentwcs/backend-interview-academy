@@ -17,7 +17,7 @@ h1{font-size:clamp(28px,4vw,42px);line-height:1.15;margin:8px 0 12px;letter-spac
 .module{width:100%;text-align:left;background:transparent;color:var(--text);border:0;border-radius:10px;padding:10px;cursor:pointer;font:inherit;display:flex;justify-content:space-between;gap:8px}.module:hover,.module.active{background:var(--panel2)}.module.active{outline:1px solid #35527e}.count{color:var(--muted);font-size:12px}
 .content{padding:22px;min-height:500px}.content-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.eyebrow{color:var(--blue);font-size:12px;letter-spacing:.08em}.content h2{margin:4px 0 8px;font-size:25px}.outcome{color:var(--muted);margin:0 0 20px;max-width:850px}
 .topic-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.topic{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:14px;cursor:pointer;text-align:left;color:var(--text);font:inherit;min-width:0}.topic:hover{border-color:#5479b0;transform:translateY(-1px)}.topic.done{border-color:#286c58}.topic-top{display:flex;justify-content:space-between;gap:8px;align-items:center}.topic-id{font-size:11px;color:var(--muted);font-family:ui-monospace,monospace}.priority{font-size:11px;border-radius:6px;padding:2px 7px;background:#28334a;color:#d4dfef}.priority.P0{background:#3b2d23;color:#ffd59b}.topic strong{display:block;font-size:15px;margin:9px 0 5px}.scope{color:var(--muted);font-size:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.detail{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:20px;margin-bottom:18px}.detail h3{font-size:23px;margin:5px 0 8px}.detail p{color:var(--muted)}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.btn{background:#243b60;color:#e8f1ff;border:1px solid #3b5b88;border-radius:9px;padding:9px 12px;cursor:pointer;font:inherit}.btn.secondary{background:transparent;border-color:var(--line);color:var(--muted)}.status{color:var(--amber);font-size:12px}.empty{color:var(--muted);padding:30px;text-align:center}.foot{color:var(--muted);font-size:12px;margin-top:24px}
+.detail{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:20px;margin-bottom:18px}.detail h3{font-size:23px;margin:5px 0 8px}.detail p{color:var(--muted)}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.btn{background:#243b60;color:#e8f1ff;border:1px solid #3b5b88;border-radius:9px;padding:9px 12px;cursor:pointer;font:inherit}.btn.secondary{background:transparent;border-color:var(--line);color:var(--muted)}.status{color:var(--amber);font-size:12px}.empty{color:var(--muted);padding:30px;text-align:center}.lesson{margin-top:18px;padding:22px;background:#0e1728;border:1px solid var(--line);border-radius:14px;line-height:1.8}.lesson h1,.lesson h2,.lesson h3{font-size:20px;line-height:1.4;margin:24px 0 10px}.lesson h1{font-size:25px}.lesson p,.lesson li{color:#d4deed}.lesson pre{overflow:auto;padding:14px;background:#080e19;border:1px solid var(--line);border-radius:10px}.lesson code{font-family:ui-monospace,monospace;color:#b8d2ff}.lesson blockquote{border-left:3px solid var(--blue);padding-left:12px;color:var(--muted)}.foot{color:var(--muted);font-size:12px;margin-top:24px}
 @media(max-width:850px){.layout{grid-template-columns:1fr}.side{position:static;max-height:240px}.topic-grid{grid-template-columns:1fr}.wrap{padding:18px 14px 40px}.content{padding:16px}}
 </style>
 </head>
@@ -40,7 +40,7 @@ h1{font-size:clamp(28px,4vw,42px);line-height:1.15;margin:8px 0 12px;letter-spac
     <aside class="side"><h3>课程模块</h3><nav id="modules"><div class="empty">正在读取知识目录…</div></nav></aside>
     <main class="content">
       <div class="content-head"><div><div class="eyebrow" id="moduleId">CURRICULUM</div><h2 id="moduleTitle">完整课程目录</h2><p class="outcome" id="moduleOutcome">选择左侧模块，查看知识点与学习范围。</p></div></div>
-      <section class="detail" id="detail"><div class="eyebrow">TOPIC DETAIL</div><h3>从知识点开始</h3><p>点击任意知识点查看其学习范围。后续会逐步补充原理讲解、代码示例、面试提纲、易错边界和场景练习。</p></section>
+      <section class="detail" id="detail"><div class="eyebrow">TOPIC DETAIL</div><h3>从知识点开始</h3><p>点击任意知识点查看课程内容。已完成的课程将加载中文讲解、代码示例、面试提纲和自测题。</p></section><article class="lesson" id="lesson" hidden></article>
       <div class="topic-grid" id="topics"></div>
       <div class="foot">掌握度记录仅保存在当前浏览器的 localStorage，不会上传到公开 GitHub 仓库。知识点标记为“提纲已收录”不代表深度讲解已经完成。</div>
     </main>
@@ -74,13 +74,41 @@ function renderContent(){
  $("topics").innerHTML=topics.length?topics.map(t=>'<button class="topic '+(progress[t.id]?'done':'')+'" data-id="'+t.id+'"><div class="topic-top"><span class="topic-id">'+t.id+'</span><span class="priority '+t.priority+'">'+t.priority+'</span></div><strong>'+t.title+'</strong><span class="scope">'+t.scope+'</span></button>').join(""):'<div class="empty">没有匹配的知识点。试试调整搜索条件。</div>';
  document.querySelectorAll(".topic").forEach(b=>b.addEventListener("click",()=>showDetail(b.dataset.id)));
 }
-function showDetail(id){
+function escapeHtml(value){return value.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function inlineMarkdown(value){return escapeHtml(value).replace(/`([^`]+)`/g,"<code>$1</code>").replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>");}
+function renderMarkdown(source){
+ const lines=source.replace(/\r/g,"").split("\n");let html="",paragraph=[],list=null,code=false,codeLines=[];
+ const flushP=()=>{if(paragraph.length){html+="<p>"+inlineMarkdown(paragraph.join(" "))+"</p>";paragraph=[];}};
+ const flushL=()=>{if(list){html+="</"+list+">";list=null;}};
+ for(const line of lines){
+  if(line.startsWith("```")){flushP();flushL();if(code){html+="<pre><code>"+escapeHtml(codeLines.join("\n"))+"</code></pre>";codeLines=[];code=false;}else code=true;continue;}
+  if(code){codeLines.push(line);continue;}
+  const h=line.match(/^(#{1,3})\s+(.+)$/);
+  if(h){flushP();flushL();const n=h[1].length;html+="<h"+n+">"+inlineMarkdown(h[2])+"</h"+n+">";continue;}
+  if(/^\s*[-*] /.test(line)){flushP();if(list!=="ul"){flushL();html+="<ul>";list="ul";}html+="<li>"+inlineMarkdown(line.replace(/^\s*[-*] /,""))+"</li>";continue;}
+  if(/^\s*\d+\. /.test(line)){flushP();if(list!=="ol"){flushL();html+="<ol>";list="ol";}html+="<li>"+inlineMarkdown(line.replace(/^\s*\d+\. /,""))+"</li>";continue;}
+  if(/^>\s?/.test(line)){flushP();flushL();html+="<blockquote>"+inlineMarkdown(line.replace(/^>\s?/,""))+"</blockquote>";continue;}
+  if(!line.trim()){flushP();flushL();continue;}
+  if(/^\|/.test(line)||/^---+$/.test(line)){flushP();flushL();continue;}
+  paragraph.push(line.trim());
+ }
+ flushP();flushL();return html;
+}
+async function showDetail(id){
  const t=curriculum.modules.flatMap(m=>m.topics).find(x=>x.id===id);if(!t)return;
- selectedTopic=id;
+ selectedTopic=id;$("lesson").hidden=true;$("lesson").innerHTML="";
  const done=!!progress[id];
- $("detail").innerHTML='<div class="eyebrow">'+t.id+' · '+t.priority+' · '+(done?'已标记掌握':'提纲已收录')+'</div><h3>'+t.title+'</h3><p><b>学习范围：</b>'+t.scope+'</p><p>本知识点已纳入完整课程提纲。深度讲解、代码示例、面试表达、易错边界和自测题将按课程建设进度逐项补齐。</p><div class="actions"><button class="btn" id="toggleDone">'+(done?'取消掌握标记':'标记为已掌握')+'</button><button class="btn secondary" id="copyId">复制知识点 ID</button></div>';
+ $("detail").innerHTML='<div class="eyebrow">'+t.id+' · '+t.priority+' · '+(done?'已标记掌握':'课程状态以正文为准')+'</div><h3>'+t.title+'</h3><p><b>学习范围：</b>'+t.scope+'</p><div class="actions"><button class="btn" id="toggleDone">'+(done?'取消掌握标记':'标记为已掌握')+'</button><button class="btn secondary" id="copyId">复制知识点 ID</button></div>';
  $("toggleDone").addEventListener("click",()=>{if(progress[id])delete progress[id];else progress[id]=true;save();renderContent();showDetail(id)});
  $("copyId").addEventListener("click",async()=>{try{await navigator.clipboard.writeText(id);$("copyId").textContent="已复制"}catch(e){$("copyId").textContent=id}});
+ try{
+  const response=await fetch("./knowledge/"+encodeURIComponent(id)+".md");
+  if(response.status===404){$("lesson").hidden=false;$("lesson").innerHTML="<p>该知识点已纳入课程目录，中文深度课程仍在建设中。当前页面不会把提纲误标为完整课程。</p>";return;}
+  if(!response.ok)throw new Error("HTTP "+response.status);
+  const markdown=await response.text();
+  if(selectedTopic!==id)return;
+  $("lesson").innerHTML=renderMarkdown(markdown);$("lesson").hidden=false;
+ }catch(e){$("lesson").hidden=false;$("lesson").innerHTML="<p>课程正文暂时无法加载："+escapeHtml(e.message)+"。请稍后重试。</p>";}
 }
 async function init(){
  try{
