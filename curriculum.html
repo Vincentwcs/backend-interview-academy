@@ -63,7 +63,7 @@ function visibleTopics(){
 }
 function renderModules(){
  $("modules").innerHTML=curriculum.modules.map(m=>'<button class="module '+(m.id===activeModule?'active':'')+'" data-id="'+m.id+'"><span>'+m.id+' · '+m.title+'</span><span class="count">'+m.topics.length+'</span></button>').join("");
- document.querySelectorAll(".module").forEach(b=>b.addEventListener("click",()=>{activeModule=b.dataset.id;selectedTopic=null;renderModules();renderContent();$("detail").innerHTML='<div class="eyebrow">TOPIC DETAIL</div><h3>选择一个知识点</h3><p>查看学习范围，并逐步完成深度课程。</p>';}));
+ document.querySelectorAll(".module").forEach(b=>b.addEventListener("click",()=>{activeModule=b.dataset.id;selectedTopic=null;$("lesson").hidden=true;$("lesson").innerHTML="";renderModules();renderContent();$("detail").innerHTML='<div class="eyebrow">TOPIC DETAIL</div><h3>选择一个知识点</h3><p>查看学习范围，并逐步完成深度课程。</p>';}));
 }
 function renderContent(){
  const m=curriculum.modules.find(x=>x.id===activeModule);
