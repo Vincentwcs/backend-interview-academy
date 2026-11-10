@@ -4,7 +4,7 @@
 - [x] Define a 12-module curriculum baseline.
 - [x] Establish stable topic IDs and priority levels.
 - [x] Define a reusable knowledge lesson template.
-- [ ] Audit and map the existing 41 V1 topic cards to syllabus IDs.
+- [x] Audit and map the existing 41 V1 topic cards to syllabus IDs. See [V1 migration map](V1-MIGRATION-MAP.md).
 - [ ] Identify missing P0 topics and duplicate/overlapping entries.
 
 **Acceptance:** every existing topic maps to one syllabus entry; each syllabus topic has an owner status (planned/draft/reviewed).
