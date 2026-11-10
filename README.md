@@ -25,6 +25,7 @@
 - [系统架构与数据边界](docs/ARCHITECTURE.md)
 - [V2 实施路线图](docs/ROADMAP.md)
 - [题库数据格式](questions/README.md)
+- [V1 旧知识卡片迁移映射](docs/V1-MIGRATION-MAP.md)
 
 ## V2 课程范围
 
