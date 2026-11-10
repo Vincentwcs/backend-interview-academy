@@ -22,7 +22,7 @@
 
 仓库已包含 GitHub Actions 工作流：`.github/workflows/deploy.yml`。
 
-首次启用时，请在 GitHub 仓库中打开 **Settings → Pages**，将 **Build and deployment → Source** 设置为 **GitHub Actions**。之后向 `main` 推送提交，工作流会自动构建并发布站点。
+在 GitHub 仓库 **Settings → Pages** 中，将 **Build and deployment → Source** 设置为 **GitHub Actions**。每次向 `main` 推送提交，工作流会自动构建并发布站点。
 
 默认站点地址：
 
