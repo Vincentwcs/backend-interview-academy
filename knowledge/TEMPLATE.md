@@ -1,62 +1,84 @@
-# Knowledge Topic Template
+# 知识点课程模板
 
-> Copy this file for each topic. Keep the topic ID identical to the ID in `syllabus.md`.
+> 使用本模板创建每一篇课程。知识点 ID 必须与 `syllabus.md` 中的 ID 完全一致。
 
-## Metadata
-- **ID:** `MODULE-000`
-- **Title:**
-- **Module:**
-- **Priority:** P0 / P1 / P2
-- **Depth:** D1 / D2 / D3
-- **Status:** planned / draft / reviewed
-- **Prerequisites:**
-- **Related topics:**
-- **Last reviewed:** YYYY-MM-DD
-- **Sources:** official documentation, specifications, source code, or other traceable references
+## 内容规范
 
-## 1. Why this matters
-What problem does this concept solve? Where does it appear in backend engineering and interviews?
+- 课程正文、原理解释、面试提纲、易错点、自测题、答案和代码注释全部使用中文。
+- Java、JVM、Spring、SQL、API、类名、方法名、协议名等标准技术名称保留英文；首次出现时用中文解释。
+- 代码保留目标语言语法，变量名采用清晰、规范的命名；代码注释使用中文。
+- 英文官方资料可以作为参考来源，但必须经过核验并用中文重新讲解，不直接堆砌英文段落或机翻内容。
+- 对 JDK、Spring、MySQL 等存在版本差异的结论，必须标注适用版本或说明差异。
+- 不得把提纲、占位说明或未经核验的推测标记为已完成课程。
 
-## 2. Learning objectives
-After studying, the learner can:
+## 元数据
+
+- **知识点 ID：** `MODULE-000`
+- **标题：**
+- **所属模块：**
+- **优先级：** P0 / P1 / P2
+- **深度：** D1 / D2 / D3
+- **状态：** planned / draft / reviewed
+- **前置知识：**
+- **关联知识点：**
+- **适用版本：**
+- **最后审校日期：** YYYY-MM-DD
+- **参考来源：** 官方文档、规范、源码或其他可追溯资料
+
+## 1. 为什么需要学习
+
+这个概念解决什么问题？它在后端工程和技术面试中出现在哪里？
+
+## 2. 学习目标
+
+完成学习后，学习者能够：
 - 
 - 
 - 
 
-## 3. Core concepts
-Define the essential terms and distinguish similar concepts.
+## 3. 核心概念
 
-## 4. Underlying mechanism
-Explain the execution path, data structures, state transitions, invariants, or algorithms. Use a sequence or diagram when it materially improves understanding.
+定义必要术语，区分容易混淆的概念，并说明概念边界。
 
-## 5. Code / SQL / configuration example
-Include a minimal, runnable or clearly annotated example where useful. Explain expected behavior and important caveats.
+## 4. 底层原理与运行机制
 
-## 6. Interview outline
-Provide a layered answer structure:
-- 30-second summary:
-- 1-minute answer:
-- 3-minute deep dive:
-- Evidence / example:
+解释执行路径、数据结构、状态变化、不变量或算法。必要时使用时序或流程说明。
 
-## 7. Common interview questions
-For each question, include a concise answer outline and at least one follow-up.
+## 5. 代码、SQL 或配置示例
 
-## 8. Misconceptions and boundaries
-List statements that sound plausible but are inaccurate, and explain the precise boundary.
+提供最小可运行示例，或明确标注为伪代码。解释预期行为、关键语句和适用边界。代码注释使用中文。
 
-## 9. Practical scenario
-Describe a realistic engineering scenario, constraints, analysis steps, trade-offs, and a defensible solution.
+## 6. 面试表达提纲
 
-## 10. Self-check
-Questions should test recall and reasoning. Put answers and rationales in a separate answer section or collapsible UI so the learner can attempt first.
+- **30 秒回答：**
+- **1 分钟回答：**
+- **3 分钟深入：**
+- **工程证据或案例：**
 
-## 11. Review checklist
-- [ ] Can explain without reading
-- [ ] Can explain the underlying mechanism
-- [ ] Can handle common follow-ups
-- [ ] Can apply it to a practical scenario
-- [ ] Can identify edge cases and trade-offs
+## 7. 高频面试问题
 
-## 12. Change log
-- YYYY-MM-DD: initial draft / reviewed / corrected — concise description.
+每个问题都提供简洁答案要点，并至少准备一个深入追问。
+
+## 8. 常见误区与边界条件
+
+列出看似合理但不准确的说法，并解释正确边界。
+
+## 9. 工程实践场景
+
+描述真实感的工程场景、约束、分析步骤、权衡和可辩护的方案。案例必须脱敏、通用化，不得包含公司内部材料、生产数据或敏感拓扑。
+
+## 10. 自测题
+
+题目应检验理解和推理。提供标准答案与评分依据；如果页面支持，应让学习者先作答再查看答案。
+
+## 11. 复习检查清单
+
+- [ ] 能脱离材料准确解释
+- [ ] 能讲清底层机制
+- [ ] 能回答常见追问
+- [ ] 能应用到工程场景
+- [ ] 能识别边界条件和权衡
+
+## 12. 变更记录
+
+- YYYY-MM-DD：初稿 / 审校 / 修订 — 简述变化。
