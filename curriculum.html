@@ -25,24 +25,24 @@ h1{font-size:clamp(28px,4vw,42px);line-height:1.15;margin:8px 0 12px;letter-spac
 <div class="wrap">
   <div class="top"><div class="brand">个人技术面试知识学院 / V2 知识地图</div><a class="back" href="./index.html">← 返回学院首页</a></div>
   <h1>完整知识地图</h1>
-  <p class="lead">以 syllabus 为唯一课程目录，覆盖 Java 后端核心技术、分布式系统、系统设计与金融科技实战。当前页面展示完整知识提纲；深度讲解将按优先级逐项建设，并明确区分提纲与已完成课程。</p>
+  <p class="lead">以课程大纲为唯一知识目录，覆盖 Java 后端核心技术、分布式系统、系统设计与金融科技实战。当前展示全部知识点及学习范围；深度课程按优先级逐项建设，并明确区分知识提纲与完整课程。</p>
   <div class="stats">
-    <div class="stat"><b id="moduleCount">—</b><span>一级模块</span></div>
+    <div class="stat"><b id="moduleCount">—</b><span>课程模块</span></div>
     <div class="stat"><b id="topicCount">—</b><span>知识点</span></div>
     <div class="stat"><b id="doneCount">0</b><span>已标记掌握</span></div>
   </div>
   <div class="toolbar">
-    <input class="search" id="search" placeholder="搜索知识点、ID 或学习范围…">
+    <input class="search" id="search" placeholder="搜索知识点编号、名称或学习范围…">
     <select class="filter" id="priority"><option value="all">全部优先级</option><option value="P0">P0 核心</option><option value="P1">P1 重要</option><option value="P2">P2 进阶</option></select>
     <select class="filter" id="status"><option value="all">全部状态</option><option value="done">已掌握</option><option value="todo">待学习</option></select>
   </div>
   <div class="layout">
-    <aside class="side"><h3>课程模块</h3><nav id="modules"><div class="empty">正在读取知识目录…</div></nav></aside>
+    <aside class="side"><h3>课程模块</h3><nav id="modules"><div class="empty">正在读取课程目录…</div></nav></aside>
     <main class="content">
-      <div class="content-head"><div><div class="eyebrow" id="moduleId">CURRICULUM</div><h2 id="moduleTitle">完整课程目录</h2><p class="outcome" id="moduleOutcome">选择左侧模块，查看知识点与学习范围。</p></div></div>
-      <section class="detail" id="detail"><div class="eyebrow">TOPIC DETAIL</div><h3>从知识点开始</h3><p>点击任意知识点查看课程内容。已完成的课程将加载中文讲解、代码示例、面试提纲和自测题。</p></section><article class="lesson" id="lesson" hidden></article>
+      <div class="content-head"><div><div class="eyebrow" id="moduleId">课程目录</div><h2 id="moduleTitle">完整课程目录</h2><p class="outcome" id="moduleOutcome">选择左侧模块，查看知识点与学习范围。</p></div></div>
+      <section class="detail" id="detail"><div class="eyebrow">知识点详情</div><h3>从知识点开始</h3><p>点击知识点查看课程内容。已建设的课程将展示中文原理讲解、代码示例、面试提纲和自测题。</p></section><article class="lesson" id="lesson" hidden></article>
       <div class="topic-grid" id="topics"></div>
-      <div class="foot">掌握度记录仅保存在当前浏览器的 localStorage，不会上传到公开 GitHub 仓库。知识点标记为“提纲已收录”不代表深度讲解已经完成。</div>
+      <div class="foot">掌握度记录仅保存在当前浏览器，不会上传到公开代码仓库。知识点已收录不代表深度课程已经完成。</div>
     </main>
   </div>
 </div>
@@ -63,15 +63,15 @@ function visibleTopics(){
 }
 function renderModules(){
  $("modules").innerHTML=curriculum.modules.map(m=>'<button class="module '+(m.id===activeModule?'active':'')+'" data-id="'+m.id+'"><span>'+m.id+' · '+m.title+'</span><span class="count">'+m.topics.length+'</span></button>').join("");
- document.querySelectorAll(".module").forEach(b=>b.addEventListener("click",()=>{activeModule=b.dataset.id;selectedTopic=null;$("lesson").hidden=true;$("lesson").innerHTML="";renderModules();renderContent();$("detail").innerHTML='<div class="eyebrow">TOPIC DETAIL</div><h3>选择一个知识点</h3><p>查看学习范围，并逐步完成深度课程。</p>';}));
+ document.querySelectorAll(".module").forEach(b=>b.addEventListener("click",()=>{activeModule=b.dataset.id;selectedTopic=null;$("lesson").hidden=true;$("lesson").innerHTML="";renderModules();renderContent();$("detail").innerHTML='<div class="eyebrow">知识点详情</div><h3>选择一个知识点</h3><p>查看学习范围，并逐步完成深度课程。</p>';}));
 }
 function renderContent(){
  const m=curriculum.modules.find(x=>x.id===activeModule);
- $("moduleId").textContent=m?m.id:"ALL MODULES";
+ $("moduleId").textContent=m?m.id:"全部模块";
  $("moduleTitle").textContent=m?m.title:"全部知识点";
  $("moduleOutcome").textContent=m?m.outcome:"跨模块检索所有知识点。";
  const topics=visibleTopics();
- $("topics").innerHTML=topics.length?topics.map(t=>'<button class="topic '+(progress[t.id]?'done':'')+'" data-id="'+t.id+'"><div class="topic-top"><span class="topic-id">'+t.id+'</span><span class="priority '+t.priority+'">'+t.priority+'</span></div><strong>'+t.title+'</strong><span class="scope">'+t.scope+'</span></button>').join(""):'<div class="empty">没有匹配的知识点。试试调整搜索条件。</div>';
+ $("topics").innerHTML=topics.length?topics.map(t=>'<button class="topic '+(progress[t.id]?'done':'')+'" data-id="'+t.id+'"><div class="topic-top"><span class="topic-id">'+t.id+'</span><span class="priority '+t.priority+'">'+({P0:'核心',P1:'重要',P2:'进阶'}[t.priority]||t.priority)+'</span>'</div><strong>'+t.title+'</strong><span class="scope">'+t.scope+'</span></button>').join(""):'<div class="empty">没有找到符合条件的知识点，请调整搜索条件。</div>';
  document.querySelectorAll(".topic").forEach(b=>b.addEventListener("click",()=>showDetail(b.dataset.id)));
 }
 function escapeHtml(value){return value.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
@@ -115,12 +115,12 @@ async function showDetail(id){
  const t=curriculum.modules.flatMap(m=>m.topics).find(x=>x.id===id);if(!t)return;
  selectedTopic=id;$("lesson").hidden=true;$("lesson").innerHTML="";
  const done=!!progress[id];
- $("detail").innerHTML='<div class="eyebrow">'+t.id+' · '+t.priority+' · '+(done?'已标记掌握':'课程状态以正文为准')+'</div><h3>'+t.title+'</h3><p><b>学习范围：</b>'+t.scope+'</p><div class="actions"><button class="btn" id="toggleDone">'+(done?'取消掌握标记':'标记为已掌握')+'</button><button class="btn secondary" id="copyId">复制知识点 ID</button></div>';
+ $("detail").innerHTML='<div class="eyebrow">'+t.id+' · '+({P0:'核心',P1:'重要',P2:'进阶'}[t.priority]||t.priority)+' · '+(done?'已标记掌握':'课程状态以正文为准')+'</div><h3>'+t.title+'</h3><p><b>学习范围：</b>'+t.scope+'</p><div class="actions"><button class="btn" id="toggleDone">'+(done?'取消掌握标记':'标记为已掌握')+'</button><button class="btn secondary" id="copyId">复制知识点编号</button></div>';
  $("toggleDone").addEventListener("click",()=>{if(progress[id])delete progress[id];else progress[id]=true;save();renderContent();showDetail(id)});
  $("copyId").addEventListener("click",async()=>{try{await navigator.clipboard.writeText(id);$("copyId").textContent="已复制"}catch(e){$("copyId").textContent=id}});
  try{
   const response=await fetch("./knowledge/"+encodeURIComponent(id)+".md");
-  if(response.status===404){$("lesson").hidden=false;$("lesson").innerHTML="<p>该知识点已纳入课程目录，中文深度课程仍在建设中。当前页面不会把提纲误标为完整课程。</p>";return;}
+  if(response.status===404){$("lesson").hidden=false;$("lesson").innerHTML="<p>该知识点已纳入课程目录，中文深度课程仍在建设中。当前不会将知识提纲误标为完整课程。</p>";return;}
   if(!response.ok)throw new Error("HTTP "+response.status);
   const markdown=await response.text();
   if(selectedTopic!==id)return;
@@ -133,7 +133,7 @@ async function init(){
   curriculum=await response.json();$("moduleCount").textContent=curriculum.module_count;$("topicCount").textContent=curriculum.topic_count;
   activeModule=curriculum.modules[0].id;save();renderModules();renderContent();
   ["search","priority","status"].forEach(id=>$(id).addEventListener(id==="search"?"input":"change",renderContent));
- }catch(e){$("modules").innerHTML='<div class="empty">知识目录加载失败：'+e.message+'。请稍后刷新。</div>';}
+ }catch(e){$("modules").innerHTML='<div class="empty">课程目录加载失败：'+e.message+'。请稍后刷新。</div>';}
 }
 init();
 </script>
