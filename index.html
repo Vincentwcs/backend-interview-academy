@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#101827">
-<title>Backend Interview Academy｜后端面试知识学院</title>
+<title>后端面试知识学院</title>
 <style>
 :root{--bg:#0b1220;--panel:#111c2e;--panel2:#17243a;--line:#263750;--text:#e8eef8;--muted:#9aabc2;--blue:#69a7ff;--cyan:#65d5d0;--green:#65d6a1;--orange:#f3bd72;--red:#ff8585}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#0b1220,#101b2d 55%,#0b1220);color:var(--text);font:15px/1.6 Inter,"PingFang SC","Microsoft YaHei",sans-serif}
@@ -18,13 +18,13 @@ button,input{font:inherit}button{cursor:pointer}.app{max-width:1440px;margin:aut
 </style>
 </head>
 <body><div class="app">
-<header class="top"><div class="brand"><div class="logo">BA</div><div><h1>Backend Interview Academy</h1><p>个人技术面试知识学院 · 持续学习与掌握度追踪</p></div></div><div class="pill">V1.0 · 本地进度保存</div></header>
-<section class="hero"><div class="hero-main"><div class="eyebrow">YOUR NEXT CAREER LEVEL</div><h2>从可靠的技术骨干，<br>成长为高价值架构人才。</h2><p>以 Java 后端为基础，以分布式系统与金融清算架构为进阶方向。通过知识地图、结构化讲解、面试表达和主动测评，建立可验证的技术深度。</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 4px"><a class="pill" href="./curriculum.html">进入完整知识地图 ↗</a><a class="pill" href="https://github.com/Vincentwcs/backend-interview-academy/blob/main/syllabus.md" target="_blank" rel="noopener">查看原始知识大纲 ↗</a><a class="pill" href="https://github.com/Vincentwcs/backend-interview-academy/blob/main/docs/ROADMAP.md" target="_blank" rel="noopener">查看建设路线图 ↗</a></div><div class="progress"><i id="heroProgress"></i></div></div>
+<header class="top"><div class="brand"><div class="logo">BA</div><div><h1>后端面试知识学院</h1><p>个人技术面试知识学院 · 持续学习与掌握度追踪</p></div></div><div class="pill">V1.0 · 本地保存学习进度</div></header>
+<section class="hero"><div class="hero-main"><div class="eyebrow">职业能力进阶</div><h2>从可靠的技术骨干，<br>成长为高价值架构人才。</h2><p>以 Java 后端为基础，以分布式系统与金融清算架构为进阶方向。通过知识地图、结构化讲解、面试表达和主动测评，建立可验证的技术深度。</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 4px"><a class="pill" href="./curriculum.html">进入完整知识地图 ↗</a><a class="pill" href="https://github.com/Vincentwcs/backend-interview-academy/blob/main/syllabus.md" target="_blank" rel="noopener">查看课程总纲 ↗</a><a class="pill" href="https://github.com/Vincentwcs/backend-interview-academy/blob/main/docs/ROADMAP.md" target="_blank" rel="noopener">查看建设路线图 ↗</a></div><div class="progress"><i id="heroProgress"></i></div></div>
 <div class="hero-side"><div class="stat"><strong id="doneCount">0</strong><span>已掌握知识点</span></div><div class="stat"><strong id="totalCount">0</strong><span>知识点总数</span></div><div class="stat"><strong id="percent">0%</strong><span>总体掌握率</span></div><div class="stat"><strong id="reviewCount">0</strong><span>待复习知识点</span></div></div></section>
 <div class="layout"><aside class="sidebar panel"><input class="search" id="search" placeholder="搜索知识点 / 关键词…"><div class="track-list" id="tracks"></div></aside>
 <main class="main"><div class="toolbar"><div><h3 id="trackTitle">知识地图</h3><p id="trackDesc">选择左侧模块，开始系统学习。</p></div><div class="filters"><button class="chip active" data-filter="all">全部</button><button class="chip" data-filter="todo">未掌握</button><button class="chip" data-filter="done">已掌握</button></div></div>
 <div class="content"><div class="topics" id="topics"></div><article class="detail" id="detail"><div class="empty">选择一个知识点，查看学习目标、核心原理与面试表达。</div></article></div></main></div>
-<div class="footer">学习记录保存在当前浏览器。更换设备或清理浏览器数据前，请导出备份。课程内容为持续迭代的个人学习底稿。</div>
+<div class="footer">学习记录仅保存在当前浏览器。更换设备或清理浏览器数据前，请先导出备份。课程内容将持续建设和审校。</div>
 </div>
 <script>
 const tracks=[
